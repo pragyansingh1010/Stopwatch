@@ -264,7 +264,103 @@
 
 
 
+    startBtn.addEventListener("click", function () {
 
+
+
+      if (!running) {
+
+        startTime = Date.now() - elapsedTime;
+
+
+
+        timer = setInterval(updateTime, 10);
+
+
+
+        running = true;
+
+
+
+        startBtn.textContent = "Stop";
+
+        startBtn.classList.add("stop");
+
+
+
+        lapBtn.textContent = "Lap";
+
+        lapBtn.classList.remove("reset");
+
+
+
+      } else {
+
+        clearInterval(timer);
+
+
+
+        running = false;
+
+
+
+        startBtn.textContent = "Start";
+
+        startBtn.classList.remove("stop");
+
+
+
+        lapBtn.textContent = "Reset";
+
+        lapBtn.classList.add("reset");
+
+      }
+
+    });
+
+
+
+    lapBtn.addEventListener("click", function () {
+
+
+
+      if (running) {
+
+
+
+        let li = document.createElement("li");
+
+
+
+        li.textContent = time.textContent;
+
+
+
+        laps.prepend(li);
+
+
+
+      } else {
+
+
+
+        elapsedTime = 0;
+
+        time.textContent = "00:00:00";
+
+
+
+        laps.innerHTML = "";
+
+
+
+        lapBtn.textContent = "Lap";
+
+        lapBtn.classList.remove("reset");
+
+      }
+
+    });
 
   </script>
 
